@@ -34,4 +34,21 @@ class TaskFragment : Fragment() {
         
         return view
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState?.putParcelableArrayList("tasks",ArrayList(tasks))
+
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val arrayList = savedInstanceState?.getParcelableArrayList<Task>("tasks")
+        if(arrayList!=null) {
+            tasks.clear()
+            tasks.addAll(arrayList!!)
+        }
+
+    }
+
 }
