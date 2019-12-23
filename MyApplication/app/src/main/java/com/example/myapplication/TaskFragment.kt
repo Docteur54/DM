@@ -13,7 +13,11 @@ import kotlinx.android.synthetic.main.task_fragment.view.*
 
 class TaskFragment : Fragment() {
 
-    private val tasks = listOf("Task 1", "Task 2","Task 3")
+    private val tasks = arrayOf(
+        Task(id = "id_1", title = "Task 1", description = "description 1"),
+        Task(id = "id_2", title = "Task 2"),
+        Task(id = "id_3", title = "Task 3")
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
