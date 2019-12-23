@@ -5,6 +5,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 class TaskViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
 
-    fun bind(task : String){}
+    fun bind(task : Task){}
 
 }

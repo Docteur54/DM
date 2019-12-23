@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.task_fragment.view.*
 
 class TaskFragment : Fragment() {
 
-    private val tasks = arrayOf(
+    private val tasks = mutableListOf(
         Task(id = "id_1", title = "Task 1", description = "description 1"),
         Task(id = "id_2", title = "Task 2"),
         Task(id = "id_3", title = "Task 3")
@@ -26,6 +26,10 @@ class TaskFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.task_fragment, container, false)
         view.tasks_recycler_view.adapter = TaskAdapter(tasks)
+        { task ->
+            tasks.remove(task)
+            view.tasks_recycler_view.adapter?.notifyDataSetChanged()}
+
         view.tasks_recycler_view.layoutManager = LinearLayoutManager(context)
         
         return view
