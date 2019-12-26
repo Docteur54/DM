@@ -2,4 +2,5 @@
     <string name="app_name">My Application</string>
     <string name="HeaderFragment">Hello World !</string>
     <string name="TaskFragment">Baggin</string>
+    <string name="loading_message">Loading</string>
 </resources>
