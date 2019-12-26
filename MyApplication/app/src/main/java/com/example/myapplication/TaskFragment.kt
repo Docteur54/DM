@@ -4,11 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication.network.Api
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.header_fragment.*
 import kotlinx.android.synthetic.main.task_fragment.*
+import kotlinx.android.synthetic.main.task_fragment.textView
 import kotlinx.android.synthetic.main.task_fragment.view.*
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import org.w3c.dom.Text
 
 
 class TaskFragment : Fragment() {
@@ -36,7 +44,6 @@ class TaskFragment : Fragment() {
 
 
         view.tasks_recycler_view.layoutManager = LinearLayoutManager(context)
-        
         return view
     }
 
