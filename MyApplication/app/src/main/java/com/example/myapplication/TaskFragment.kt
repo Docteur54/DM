@@ -25,10 +25,15 @@ class TaskFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.task_fragment, container, false)
-        view.tasks_recycler_view.adapter = TaskAdapter(tasks)
-        { task ->
+        view.tasks_recycler_view.adapter = TaskAdapter(tasks,
+        onDeleteClickListener = { task ->
             tasks.remove(task)
-            view.tasks_recycler_view.adapter?.notifyDataSetChanged()}
+            view.tasks_recycler_view.adapter?.notifyDataSetChanged()},
+        onEditClickListener = { task ->
+            tasks.remove(task)
+            view.tasks_recycler_view.adapter?.notifyDataSetChanged()})
+
+
 
         view.tasks_recycler_view.layoutManager = LinearLayoutManager(context)
         

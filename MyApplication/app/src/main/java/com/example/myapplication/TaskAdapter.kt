@@ -9,7 +9,8 @@ import kotlinx.android.synthetic.main.item_task.view.*
 
 class TaskAdapter(
     private val tasks: MutableList<Task>,
-    private val onDeleteClickListener: (id: Task) -> Unit) : RecyclerView.Adapter<TaskViewHolder>() {
+    private val onDeleteClickListener: (id: Task) -> Unit,
+    private val onEditClickListener: (id: Task) -> Unit) : RecyclerView.Adapter<TaskViewHolder>() {
 
     override fun getItemCount(): Int {return tasks.size}
 
@@ -22,6 +23,6 @@ class TaskAdapter(
         Log.d("ViewHolder",task.id)
         holder.bind(task)
         holder.itemView.button_delete.setOnClickListener { onDeleteClickListener(task) }
-        //holder.itemView.edit.setOnClickListener { onEditClickListener(tasks[position])}
+        holder.itemView.edit.setOnClickListener { onEditClickListener(task)}
     }
 }
