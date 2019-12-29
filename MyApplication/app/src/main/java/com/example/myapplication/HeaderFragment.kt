@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 class HeaderFragment : Fragment() {
 
     private val coroutineScope = MainScope()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

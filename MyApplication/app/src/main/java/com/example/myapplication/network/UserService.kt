@@ -1,4 +1,4 @@
-package com.example.td2.network
+package com.example.myapplication.network
 
 import com.example.myapplication.network.UserInfo
 import retrofit2.Response
