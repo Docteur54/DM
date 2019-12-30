@@ -38,6 +38,7 @@ class TaskFragment : Fragment() {
         onDeleteClickListener = { task ->
             tasks.remove(task)
             tasksRepository.deleteTask(task.id)
+            view?.tasks_recycler_view?.adapter?.notifyDataSetChanged()
         },
         onEditClickListener = { task ->
             tasks.remove(task)
