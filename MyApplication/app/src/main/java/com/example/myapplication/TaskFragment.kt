@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -41,8 +42,14 @@ class TaskFragment : Fragment() {
             view?.tasks_recycler_view?.adapter?.notifyDataSetChanged()
         },
         onEditClickListener = { task ->
-            tasks.remove(task)
-            tasksRepository.deleteTask(task.id)
+            //tasks.remove(task)
+            //tasksRepository.deleteTask(task.id)
+            val intent = Intent( this.context  ,TaskFormActivity::class.java)
+            intent.putExtra("TASK_ID",task.id)
+            intent.putExtra("TASK_TITLE",task.title)
+            intent.putExtra("TASK_DESCRIPTION",task.description)
+            //intent.putExtra("TASK_EDIT",true)
+            startActivity(intent)
         })
 
     override fun onCreateView(
@@ -79,6 +86,7 @@ class TaskFragment : Fragment() {
 
         return view
     }
+
 /*
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)

@@ -26,4 +26,14 @@ class TasksRepository {
         Log.e("loadTasks", tasksResponse.toString())
         return if (tasksResponse.isSuccessful) tasksResponse.body() else null
     }
+
+    fun editTask(task: Task) : Task?{
+        coroutineScope.launch{tasksService.updateTask(task.id,task)}
+        return null
+    }
+
+    fun createTask(task: Task) : Task?{
+        coroutineScope.launch{tasksService.createTask(task)}
+        return null
+    }
 }
