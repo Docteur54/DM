@@ -29,7 +29,7 @@ class HeaderFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.header_fragment, container, false)
         coroutineScope.launch{
-            val name = Api.userService.getInfo().body()?.firstname
+            val name = Api.INSTANCE.userService.getInfo().body()?.firstname
             view?.textView?.text = name
         }
         return view
@@ -37,9 +37,9 @@ class HeaderFragment : Fragment() {
 
     override fun onResume() {
         coroutineScope.launch{
-            val name = Api.userService.getInfo().body()?.firstname
+            val name = Api.INSTANCE.userService.getInfo().body()?.firstname
             view?.textView?.text = name.toString()
-            val url = Api.userService.getInfo().body()?.avatar ?: "https://goo.gl/gEgYUd"
+            val url = Api.INSTANCE.userService.getInfo().body()?.avatar ?: "https://goo.gl/gEgYUd"
             //val url = "https://goo.gl/gEgYUd"
             Glide.with(this@HeaderFragment).load(url).fitCenter().circleCrop().into(image_view)
 

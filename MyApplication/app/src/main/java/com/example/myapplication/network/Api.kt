@@ -1,14 +1,23 @@
 package com.example.myapplication.network
+import android.content.Context
+import android.preference.PreferenceManager
+import com.example.myapplication.SHARED_PREF_TOKEN_KEY
 import com.example.myapplication.TasksService
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-object Api {
-    private const val BASE_URL = "https://android-tasks-api.herokuapp.com/api/"
-    private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMTgsImV4cCI6MTYwOTAxNjE5Mn0.n4w1Mwe_cW20-S-XwP5i7djLXcTw4kX8yVB6I5CLkG8"
-//    private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxNDEsImV4cCI6MTYwOTI3MDk5OH0.eMzbC6TKGLr207JTVkEVGgEL7uKi1hy5QWzZdmlRkX8"
+class Api(private val context: Context) {
+    companion object {
+        private const val BASE_URL = "https://android-tasks-api.herokuapp.com/api/"
+        //private const val TOKEN = "votre token"
+        lateinit var INSTANCE: Api
+    }
+
+    fun getToken() : String {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(SHARED_PREF_TOKEN_KEY, "") ?: ""
+    }
 
 
     private val moshi = Moshi.Builder().build()
@@ -17,7 +26,7 @@ object Api {
         OkHttpClient.Builder()
             .addInterceptor{ chain ->
                 val newRequest = chain.request().newBuilder()
-                    .addHeader("Authorization", "Bearer $TOKEN")
+                    .addHeader("Authorization", "Bearer ${getToken()}")
                     .build()
                 chain.proceed(newRequest)
             }

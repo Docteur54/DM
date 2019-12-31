@@ -102,7 +102,7 @@ class UserInfoActivity : AppCompatActivity() {
 
         if(imageBody == null) return
         MainScope().launch {
-            Api.userService.updateAvatar(imageBody)
+            Api.INSTANCE.userService.updateAvatar(imageBody)
         }
 
     }
